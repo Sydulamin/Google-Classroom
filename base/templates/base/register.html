@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block head %}
+   <link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">  
+{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-light navbar_custom">
+    <a class="navbar-brand" href="{% url 'landing_page' %}" style="font-size:250% !important; color:#2e45c7 !important; margin-left: 7%; margin-right: 35%"><b>Classroom</b></a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link mybtn myinfo" href="{% url 'landing_page' %}">Home</a>
+          </li>
+  
+          <li class="nav-item active">
+            <a class="nav-link mybtn myinfo" href="{% url 'login' %}">Login<span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+
+    </div>
+</nav>
+{% endblock %}
+
+{% block content_left %}
+    <div class="login-page">
+        <img src="{% static 'images/boy_and_girl.svg' %}" alt="Boy and Girl" width="400" height="400">
+    </div>
+{% endblock %}
+
+{% block content_right %}
+    <div class="login-page">
+        <div class="myform">
+          <h1 class="signup_card"><b>SignUp</b></h1>
+          <p class="signup_info">Create a new account by giving a username and a new password</p>
+        <form class="login-form" method="POST"  enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form|crispy}}
+            <button type='submit'><b>Register</b></button>
+        </form>
+        </div>
+    </div>
+{% endblock %}
